@@ -1,0 +1,93 @@
+{
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.rules.customizations": [
+    {
+      "rule": "@stylistic/*",
+      "fixable": true,
+      "severity": "off"
+    }
+  ],
+  // "js/ts.implicitProjectConfig.checkJs": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/_lib": true,
+    "ml/**/*": true,
+    "**/*.code-search": true
+  },
+  "files.eol": "\n",
+  "editor.inlayHints.enabled": "on",
+  "editor.inlayHints.padding": true,
+  "editor.foldingImportsByDefault": true,
+  "javascript.suggest.autoImports": true,
+  "javascript.suggest.completeJSDocs": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "javascript.suggest.enabled": true,
+  "javascript.suggest.jsdoc.generateReturns": true,
+  "javascript.suggest.paths": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+  "javascript.format.insertSpaceAfterKeywordsInControlFlowStatements": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+  "javascript.format.insertSpaceAfterCommaDelimiter": true,
+  "javascript.format.insertSpaceAfterSemicolonInForStatements": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+  "javascript.format.indentSwitchCase": true,
+  "javascript.preferences.importModuleSpecifier": "shortest",
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  // "javascript.inlayHints.functionLikeReturnTypes.enabled": false,
+  // "javascript.inlayHints.parameterNames.enabled": "all",
+  // "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  // "javascript.inlayHints.parameterTypes.enabled": false,
+  // "javascript.inlayHints.propertyDeclarationTypes.enabled": false,
+  // "javascript.inlayHints.variableTypes.enabled": false,
+  // "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName": true,
+
+  "json.schemas": [
+    {
+      "fileMatch": ["**/*.fiveserverrc"],
+      "url": "/.vscode/fiveserver.schema.json"
+    }
+  ],
+  "cSpell.words": [
+    "Arduino",
+    "crosshair",
+    "Espruino",
+    "grayscale",
+    "importmap",
+    "ixfx",
+    "WLED"
+  ],
+
+  "livePreview.showServerStatusNotifications": false,
+  "terminal.integrated.fontLigatures.enabled": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.value": 5,
+  "chat.mcp.access": "none",
+  "chat.mcp.autostart": "never",
+  "chat.mcp.discovery.enabled": {
+    "claude-desktop": false,
+    "windsurf": false,
+    "cursor-global": false,
+    "cursor-workspace": false
+  },
+  "inlineChat.enableV2": false,
+  "chat.disableAIFeatures": true,
+  "chat.agent.enabled": false,
+  "chat.commandCenter.enabled": false,
+  "chat.extensionTools.enabled": false,
+  "chat.sendElementsToChat.enabled": false
+}

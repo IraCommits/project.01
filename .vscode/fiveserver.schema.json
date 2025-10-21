@@ -1,0 +1,253 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$ref": "#/definitions/LiveServerParams",
+    "definitions": {
+        "LiveServerParams": {
+            "type": "object",
+            "properties": {
+                "browser": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
+                },
+                "cache": {
+                    "type": "boolean"
+                },
+                "configFile": {
+                    "type": [
+                        "boolean",
+                        "string"
+                    ]
+                },
+                "cors": {
+                    "type": "boolean"
+                },
+                "file": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "htpasswd": {
+                    "type": "string"
+                },
+                "https": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "$ref": "#/definitions/Certificate"
+                        }
+                    ]
+                },
+                "ignore": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string",
+                                "format": "regex"
+                            },
+                            {
+                                "$ref": "#/definitions/Glob"
+                            }
+                        ]
+                    }
+                },
+                "logLevel": {
+                    "type": "number",
+                    "enum": [
+                        0,
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                "mount": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "injectCss": {
+                    "type": "boolean"
+                },
+                "open": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "php": {
+                    "type": "string"
+                },
+                "phpIni": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "number"
+                },
+                "proxy": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "remoteLogs": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "$ref": "#/definitions/Colors"
+                        }
+                    ]
+                },
+                "root": {
+                    "type": "string"
+                },
+                "baseURL": {
+                    "type": "string"
+                },
+                "useLocalIp": {
+                    "type": "boolean"
+                },
+                "wait": {
+                    "type": "number"
+                },
+                "watch": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "string",
+                                        "format": "regex"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/Glob"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "highlight": {
+                    "type": "boolean"
+                },
+                "injectBody": {
+                    "type": "boolean"
+                },
+                "navigate": {
+                    "type": "boolean"
+                },
+                "withExtension": {
+                    "type": "string",
+                    "enum": [
+                        "always",
+                        "avoid",
+                        "redirect",
+                        "unset"
+                    ]
+                },
+                "workspace": {
+                    "type": "string"
+                },
+                "httpsModule": {
+                    "deprecated": "No need for an external https module"
+                },
+                "ignorePattern": {
+                    "deprecated": "Use ignore instead."
+                },
+                "noBrowser": {
+                    "type": "boolean",
+                    "deprecated": "Use open instead."
+                },
+                "spa": {
+                    "type": "boolean",
+                    "deprecated": "No one uses /# anymore."
+                },
+                "_cli": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "Certificate": {
+            "type": "object",
+            "properties": {
+                "cert": {},
+                "key": {},
+                "passphrase": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cert",
+                "key"
+            ],
+            "additionalProperties": false
+        },
+        "Glob": {
+            "type": "string"
+        },
+        "Colors": {
+            "type": "string",
+            "enum": [
+                "bold",
+                "black",
+                "red",
+                "green",
+                "yellow",
+                "blue",
+                "magenta",
+                "cyan",
+                "white",
+                "gray",
+                "grey",
+                "brightRed",
+                "brightGreen",
+                "brightYellow",
+                "brightBlue",
+                "brightMagenta",
+                "brightCyan",
+                "brightWhite"
+            ]
+        }
+    }
+}

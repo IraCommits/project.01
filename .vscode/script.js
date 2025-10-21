@@ -21,6 +21,7 @@ function loop() {
       const { element, x, y, hue, isDragging } = thing;
     }
     Util.setPositionPixels(x, y, element);
+    Util.se;
   }
 
   window.requestAnimationFrame(loop);
@@ -49,29 +50,28 @@ function createThing(n) {
 function setup() {
   // Put your event listener code here
   createThing(10);
-
   for (const thing of things) {
     const { element, x, y, hue } = thing;
-    Util.setPositionPixels(thing.x, thing.y, thing.element);
+    Util.setPositionPixels(x, y, element);
     Util.setColour(hue, 100, 50, 0.5, element);
 
+    document.addEventListener("pointermove", (event) => {
+      for (const t of things) {
+        t.x = event.x - size / 2;
+        t.y = event.y - size / 2;
+      }
+    });
     element.addEventListener("pointerdown", (event) => {
       thing.isDragging = true;
     });
 
     element.addEventListener("pointerup", (event) => {
       for (const t of thing) {
-        t.isDragging = false;
+        thing.isDragging = false;
       }
     });
   }
 
-  document.addEventListener("pointermove", (event) => {
-    for (const t of things) {
-      t.x = event.x - size / 2;
-      t.y = event.y - size / 2;
-    }
-  });
   window.requestAnimationFrame(loop);
 }
 

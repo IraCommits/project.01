@@ -7,6 +7,8 @@ import * as Util from "../util.js";
 // State variables
 let things = [];
 let activeThing = null;
+let pileX = [200, 200, 200];
+let pileY = [200, 200, 200];
 
 // Settings
 const size = 100;
@@ -23,12 +25,12 @@ function loop() {
 function createThing(n) {
   for (let i = 0; i < n; i++) {
     const element = Util.createThing();
-    const x = Math.random() * (window.innerWidth - size);
-    const y = Math.random() * (window.innerHeight - size);
+    const x = pileX[i] - size / 2;
+    const y = pileY[] - size/2;
     const hue = (i * 360) / n;
 
     Util.setPositionPixels(x, y, element);
-    Util.setColour(hue, 100, 50, 0.7, element);
+    Util.setColour(hue, 100, 50, 0.5, element);
 
     things.push({ element, x, y, hue, isDragging: false });
   }
@@ -56,7 +58,7 @@ function handlePointerMove(event) {
 
 // Setup everything
 function setup() {
-  createThing(12);
+  createThing(3);
 
   // Pointerdown for each circle
   for (const thing of things) {

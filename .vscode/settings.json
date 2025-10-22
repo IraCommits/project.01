@@ -85,7 +85,7 @@
     "cursor-workspace": false
   },
   "inlineChat.enableV2": false,
-  "chat.disableAIFeatures": true,
+  "chat.disableAIFeatures": false,
   "chat.agent.enabled": false,
   "chat.commandCenter.enabled": false,
   "chat.extensionTools.enabled": false,

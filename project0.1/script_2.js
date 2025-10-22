@@ -4,70 +4,116 @@
 
 import * as Util from "../util.js";
 
-// State variables
-let things = [];
-let activeThing = null;
-let pileX = [200, 200, 200];
-let pileY = [200, 200, 200];
+//
+let socks = []; // All socks
+let activeSock = null; // Sock currently being dragged
 
-// Settings
-const size = 100;
+let pileX = [100, 200, 300]; // X positions for sock pile
+let pileY = [100, 150, 200]; // Y positions for sock pile
 
-// Animation loop
-function loop() {
-  for (const thing of things) {
-    Util.setPositionPixels(thing.x, thing.y, thing.element);
-  }
-  requestAnimationFrame(loop);
+let closet = Util.createThing("closet"); // Closet element
+Util.setSize(100, closet);
+Util.setColour(180, 100, 50, 1, closet);
+Util.setRoundedness(0.1, closet);
+Util.setPositionPixels(100, 400, closet);
+
+const sockSize = 50; // Sock size
+
+// Target boxes
+const targetBoxes = [
+  { x: 500, y: 200, width: 150, height: 150, hue: 120, color: "red" },
+  { x: 500, y: 400, width: 150, height: 150, hue: 240, color: "green" },
+  { x: 500, y: 600, width: 150, height: 150, hue: 360, color: "blue" },
+];
+
+// Appearence target boxes. It could be changed
+for (const box of targetBoxes) {
+  const div = document.createElement("div");
+  div.style.position = "absolute";
+  div.style.left = `${box.x}px`;
+  div.style.top = `${box.y}px`;
+  div.style.width = `${box.width}px`;
+  div.style.height = `${box.height}px`;
+  div.style.border = `4px solid ${box.color}`;
+  div.style.borderRadius = "12px";
+  div.style.display = "flex";
+  div.style.alignItems = "center";
+  div.style.justifyContent = "center";
+  div.style.fontFamily = "sans-serif";
+  div.style.fontWeight = "bold";
+  div.style.color = box.color;
+  div.textContent = box.color.toUpperCase();
+  document.body.appendChild(div);
+  box.element = div;
 }
 
-// Create n circles
-function createThing(n) {
-  for (let i = 0; i < n; i++) {
-    const element = Util.createThing();
-    const x = pileX[i] - size / 2;
-    const y = pileY[] - size/2;
-    const hue = (i * 360) / n;
+//  FUNCTIONS
+function generateSocks() {
+  // Clear existing socks
+  for (const s of socks) {
+    s.element.remove();
+  }
+  socks = [];
 
-    Util.setPositionPixels(x, y, element);
-    Util.setColour(hue, 100, 50, 0.5, element);
+  // Create 3 socks
+  for (let i = 0; i < 3; i++) {
+    let sock = Util.createThing();
 
-    things.push({ element, x, y, hue, isDragging: false });
+    const x = pileX[i];
+    const y = pileY[i];
+    const hue = i * 120 + 120;
+
+    Util.setSize(sockSize, null, sock);
+    Util.setPositionPixels(x, y, sock);
+    Util.setColour(hue, 100, 50, 1, sock);
+    Util.setRoundedness(0.5, sock);
+
+    const sockObj = {
+      element: sock,
+      x,
+      y,
+      hue,
+      isDragging: false,
+    };
+    socks.push(sockObj);
+
+    //  attach pointerdown listener right here
+    sock.addEventListener("pointerdown", (e) => handlePointerDown(e, sockObj));
   }
 }
 
-// Event handlers
-function handlePointerDown(event, thing) {
-  thing.isDragging = true;
-  activeThing = thing;
+// HANDLERS
+function handlePointerDown(event, sock) {
+  sock.isDragging = true;
+  activeSock = sock;
 }
 
 function handlePointerUp() {
-  if (activeThing) {
-    activeThing.isDragging = false;
-    activeThing = null;
+  if (activeSock) {
+    activeSock.isDragging = false;
+    activeSock = null;
   }
 }
 
 function handlePointerMove(event) {
-  if (activeThing && activeThing.isDragging) {
-    activeThing.x = event.x - size / 2;
-    activeThing.y = event.y - size / 2;
+  if (activeSock && activeSock.isDragging) {
+    activeSock.x = event.x - sockSize / 2;
+    activeSock.y = event.y - sockSize / 2;
   }
 }
 
-// Setup everything
-function setup() {
-  createThing(3);
-
-  // Pointerdown for each circle
-  for (const thing of things) {
-    thing.element.addEventListener("pointerdown", (e) =>
-      handlePointerDown(e, thing)
-    );
+// MAIN LOOP
+function loop() {
+  for (const sock of socks) {
+    Util.setPositionPixels(sock.x, sock.y, sock.element);
   }
+  requestAnimationFrame(loop);
+}
 
-  // Global pointer listeners
+// SETUP
+function setup() {
+  closet.addEventListener("click", generateSocks);
+
   document.addEventListener("pointermove", handlePointerMove);
   document.addEventListener("pointerup", handlePointerUp);
 
